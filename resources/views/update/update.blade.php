@@ -35,5 +35,7 @@
             </div>
         </div>
     </form>
+
+    <a href="/home">back</a>
 </body>
 </html>

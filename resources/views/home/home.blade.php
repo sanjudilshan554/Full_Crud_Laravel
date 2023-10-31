@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Dashboard</h1>
+    <h1>hh{{session('email')}}</h1>
+    <a href="/">logout</a>
 
     <table>
         <thead>

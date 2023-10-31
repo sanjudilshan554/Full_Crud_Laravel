@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\registration;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -66,6 +66,8 @@ class RegistrationController extends Controller
     }
 
     function login(Request $request){
+        // return $request;
+
         $em=$request->email;
         $pw=$request->password;
 
@@ -76,6 +78,9 @@ class RegistrationController extends Controller
 
         if($user){
             if($user->password === $pw && $user->email === $em){
+                $data= $request->input('email');
+                $request->session()->put('email',$data);
+                
                 return redirect()->route('homeView');
             }else{
                 return redirect()->route('loginView');
@@ -89,6 +94,20 @@ class RegistrationController extends Controller
     function updateUser(Request $request){
         $userId=$request->id;
 
+    }
 
+    function deleteUser(Request $request){
+        $id=$request->id;
+
+        $deleted = DB::table('registrations')
+        ->where('id',$id)
+        ->delete();
+
+        if($deleted){
+            return redirect()->route('homeView');
+        }else{
+            return "error";
+        }
+        
     }
 }

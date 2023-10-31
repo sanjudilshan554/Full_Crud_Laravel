@@ -37,3 +37,9 @@ Route::get('/update/{id}',[RegistrationController::class,'getUpdate'])->name('up
 Route::post('/update/updateUser',[RegistrationController::class,'setUpdate'])->name('updateUser');
 
 Route::get('/delete/{id}',[RegistrationController::class,'deleteUser'])->name('delete');
+
+Route::get('/logout',function(){
+    if(session()->has('email')){
+        session()->forget('email');
+    }return redirect("loginView");
+});

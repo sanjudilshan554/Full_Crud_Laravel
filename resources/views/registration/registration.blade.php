@@ -7,6 +7,8 @@
 <body>
     <h1>Register new user</h1>
 
+    <a href="/">back</a>
+
     <form action="register" method="POST">
         @csrf
         <div class="">
